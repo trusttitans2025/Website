@@ -1,0 +1,9 @@
+.product-detail-page {
+  padding: 4rem 0;
+}
+
+.product-detail-page .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}

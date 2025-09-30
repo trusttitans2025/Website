@@ -1,0 +1,28 @@
+.payment-page-wrapper {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.payment-card {
+  border: none;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.payment-methods {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.payment-methods .form-check-label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.payment-success-alert {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}

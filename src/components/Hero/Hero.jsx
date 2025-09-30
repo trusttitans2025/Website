@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Button } from 'react-bootstrap';
+import { FaArrowRight } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
@@ -8,7 +9,7 @@ const Hero = () => {
       <Container>
         <h1>Welcome to GeminiStore</h1>
         <p>Find the best products at the best prices.</p>
-        <Button variant="primary" size="lg">Shop Now</Button>
+        <Button variant="primary" size="lg">Shop Now <FaArrowRight /></Button>
       </Container>
     </div>
   );

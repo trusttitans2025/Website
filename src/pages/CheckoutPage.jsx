@@ -1,8 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { AuthContext } from '../context/AuthContext';
+import { CartContext } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import './CheckoutPage.css';
 
 const CheckoutPage = () => {
+  const { user } = useContext(AuthContext);
+  const { cart, clearCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const handlePlaceOrder = () => {
+    const newOrder = {
+      orderId: `ORD-${Date.now()}`,
+      userId: user.email,
+      products: cart.map(product => ({
+        productId: product.id,
+        quantity: 1, // Assuming quantity is 1 for now
+        price: product.price
+      })),
+      totalAmount: cart.reduce((total, product) => total + product.price, 0),
+      orderDate: new Date().toISOString().split('T')[0],
+      deliveryDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 3 days from now
+      status: 'pending',
+      transactionId: `TXN-${Date.now()}`,
+      paymentMethod: 'Credit Card',
+      shippingAddress: 'Full address' // Dummy address
+    };
+
+    console.log('New Order:', newOrder);
+    clearCart();
+    navigate('/');
+  };
+
   return (
     <div className="checkout-page">
       <Container>
@@ -76,7 +106,7 @@ const CheckoutPage = () => {
           </Col>
         </Row>
         <div className="text-center mt-4">
-          <Button variant="primary" size="lg">Place Order</Button>
+          <Button variant="primary" size="lg" onClick={handlePlaceOrder}>Place Order</Button>
         </div>
       </Container>
     </div>

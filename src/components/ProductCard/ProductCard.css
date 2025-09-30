@@ -1,18 +1,24 @@
 .product-card {
-  margin-bottom: 2rem;
-  transition: transform 0.2s;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .product-card:hover {
-  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-card .card-title {
-  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #333;
+  text-decoration: none;
+}
+
+.product-card .card-title:hover {
+  color: #007bff;
 }
 
 .product-card .price {
-  font-weight: bold;
   font-size: 1.2rem;
+  font-weight: 700;
+  color: #28a745;
 }

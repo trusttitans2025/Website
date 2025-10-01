@@ -1,7 +1,4 @@
 .header-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1020;
   background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -40,4 +37,8 @@
   border-radius: 50%;
   padding: 0.2rem 0.4rem;
   font-size: 0.7rem;
+}
+
+.header-spacer {
+  height: 70px; /* Adjust this value to match your header's height */
 }

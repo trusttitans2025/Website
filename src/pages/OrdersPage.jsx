@@ -11,6 +11,7 @@ const OrdersPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        console.log('User:', user);
         const response = await fetch('https://web-chat-service-631872245250.us-central1.run.app/orders');
         if (!response.ok) {
           throw new Error('Failed to fetch orders');

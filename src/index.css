@@ -18,7 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--light-color);
   color: var(--dark-color);
-  padding-top: 70px;
 }
 
 a {

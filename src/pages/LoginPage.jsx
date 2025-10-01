@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { FaShoppingCart } from 'react-icons/fa';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -31,7 +32,7 @@ const LoginPage = () => {
       <div className="login-box">
         <div className="login-logo text-center mb-4">
           <Link to="/">
-            <img src="/vite.svg" alt="Logo" width="100" />
+            <FaShoppingCart size={50} />
           </Link>
         </div>
         <h3 className="text-center mb-4">Sign in to your account</h3>

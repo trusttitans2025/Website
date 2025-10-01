@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="light" variant="light" expand="lg" className={`header-navbar ${scrolled ? 'scrolled' : ''}`}>
+      <Navbar bg="light" variant="light" expand="lg" className={`header-navbar fixed-top ${scrolled ? 'scrolled' : ''}`}>
         <Container>
           <Navbar.Brand as={Link} to="/">GeminiStore</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

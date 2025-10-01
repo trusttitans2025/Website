@@ -8,6 +8,8 @@ class MessageParser {
 
     if (lowerCaseMessage.includes("hello")) {
       this.actionProvider.greet();
+    } else if (lowerCaseMessage.includes("orders") || lowerCaseMessage.includes("my orders") || lowerCaseMessage.includes("order list")) {
+      this.actionProvider.handleUserOrders();
     }
   }
 }

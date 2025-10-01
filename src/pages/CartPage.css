@@ -1,15 +1,27 @@
 .cart-page-wrapper {
   padding: 4rem 0;
-  background-color: #f8f9fa;
+  background-color: var(--light-color);
 }
 
-.cart-item-card {
-  border: none;
+.cart-table {
+  background-color: var(--white-color);
+  border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-.cart-summary-card {
-  border: none;
+.cart-table th {
+  border-top: none;
+  font-weight: 600;
+}
+
+.cart-table td {
+  vertical-align: middle;
+}
+
+.order-summary-wrapper {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 

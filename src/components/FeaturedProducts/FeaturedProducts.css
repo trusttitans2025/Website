@@ -1,8 +1,4 @@
-.featured-products {
+.featured-products-section {
   padding: 4rem 0;
-}
-
-.featured-products h2 {
-  text-align: center;
-  margin-bottom: 2rem;
+  background-color: #fff;
 }

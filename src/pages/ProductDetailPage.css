@@ -2,8 +2,12 @@
   padding: 4rem 0;
 }
 
-.product-detail-page .price {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #007bff;
+.product-image-gallery {
+  background-color: #F9FAFB;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.product-info {
+  padding: 2rem;
 }

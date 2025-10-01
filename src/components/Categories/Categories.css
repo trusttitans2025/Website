@@ -2,37 +2,23 @@
   padding: 4rem 0;
 }
 
-.category-link {
-  text-decoration: none;
-}
-
 .category-card {
-  border: none;
-  background-color: transparent;
-  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .category-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .category-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  height: 200px;
   object-fit: cover;
-  margin: 0 auto 1.5rem auto;
-  border: 5px solid #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.category-card-body {
-  height: 80px; /* Adjust as needed */
 }
 
 .category-card .card-title {
-  color: #333;
   font-weight: 600;
 }

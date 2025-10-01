@@ -30,10 +30,10 @@ const ProductDetailPage = () => {
     <div className="product-detail-page">
       <Container>
         <Row>
-          <Col md={6}>
+          <Col md={6} className="product-image-gallery">
             <Image src={product.image} fluid />
           </Col>
-          <Col md={6}>
+          <Col md={6} className="product-info">
             <h2>{product.name}</h2>
             <p className="price">${product.price}</p>
             <p>{product.description}</p>

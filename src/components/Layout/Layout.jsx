@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SimpleChatbot from '../Chatbot/Chatbot';
-import { FaHeadphones } from 'react-icons/fa';
+import { FiHeadphones } from 'react-icons/fi';
 import './Layout.css';
 
 const Layout = () => {
@@ -23,7 +23,7 @@ const Layout = () => {
       {showChatbot && <SimpleChatbot toggleChatbot={toggleChatbot} />}
       {!showChatbot && (
         <button className="chatbot-toggle-button" onClick={toggleChatbot}>
-          <FaHeadphones style={{ border: '2px solid red' }} />
+          <FiHeadphones />
         </button>
       )}
     </div>

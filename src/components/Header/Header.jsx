@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
@@ -10,15 +10,28 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const { cart } = useContext(CartContext);
   const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" className="header-navbar">
+      <Navbar bg="light" variant="light" expand="lg" className={`header-navbar ${scrolled ? 'scrolled' : ''}`}>
         <Container>
           <Navbar.Brand as={Link} to="/">GeminiStore</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,7 +47,7 @@ const Header = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-light">Search</Button>
+              <Button variant="outline-primary">Search</Button>
             </Form>
             <Nav>
               <Nav.Link as={Link} to="/cart" className="nav-icon">

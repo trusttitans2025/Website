@@ -1,19 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import SimpleChatbot from '../Chatbot/Chatbot';
-import { FiHeadphones } from 'react-icons/fi';
+import Chatbot from '../Chatbot/Chatbot';
 import { AuthContext } from '../../context/AuthContext';
 import './Layout.css';
 
 const Layout = () => {
   const { user } = useContext(AuthContext);
-  const [showChatbot, setShowChatbot] = useState(false);
-
-  const toggleChatbot = () => {
-    setShowChatbot(prev => !prev);
-  };
 
   return (
     <div className="layout">
@@ -23,12 +17,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      {showChatbot && <SimpleChatbot user={user} />}
-      {!showChatbot && (
-        <button className="chatbot-toggle-button" onClick={toggleChatbot}>
-          <FiHeadphones />
-        </button>
-      )}
+      <Chatbot user={user} />
     </div>
   );
 };

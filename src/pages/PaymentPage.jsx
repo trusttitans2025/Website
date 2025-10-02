@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Container, Button, Spinner, Alert, Form, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import { AuthContext } from '../context/AuthContext';
 import { FaCreditCard, FaPaypal, FaGoogle } from 'react-icons/fa';
 import './PaymentPage.css';
 
@@ -9,20 +10,46 @@ const PaymentPage = () => {
   const [paying, setPaying] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('credit-card');
-  const { clearCart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handlePayment = (e) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
     setPaying(true);
-    setTimeout(() => {
-      setPaying(false);
+
+    const orderPayload = {
+      userId: user.email,
+      products: cart.map(item => ({ productId: item.id, quantity: item.quantity, price: item.price })),
+      totalAmount: cart.reduce((total, item) => total + item.price * item.quantity, 0) + 5, // +5 for shipping
+      paymentMethod: paymentMethod,
+      shippingAddress: '123 Main St, Anytown, USA', // Dummy address
+    };
+
+    try {
+      const response = await fetch('https://web-chat-service-631872245250.us-central1.run.app/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderPayload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create order');
+      }
+
       setPaymentSuccess(true);
       clearCart();
       setTimeout(() => {
-        navigate('/');
+        navigate('/orders');
       }, 3000);
-    }, 2000);
+    } catch (error) {
+      console.error('Error creating order:', error);
+      // Handle error, show an error message to the user
+    }
+
+    setPaying(false);
   };
 
   return (
@@ -109,7 +136,7 @@ const PaymentPage = () => {
             ) : (
               <Alert variant="success" className="payment-success-alert">
                 <Alert.Heading>Payment Successful!</Alert.Heading>
-                <p>Thank you for your purchase. You will be redirected to the home page shortly.</p>
+                <p>Thank you for your purchase. You will be redirected to your orders page shortly.</p>
               </Alert>
             )}
           </Col>

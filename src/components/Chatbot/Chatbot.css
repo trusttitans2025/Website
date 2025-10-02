@@ -52,13 +52,23 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 15px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .chatbot-header h3 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .chatbot-messages {
@@ -76,6 +86,8 @@
   max-width: 80%;
   line-height: 1.4;
   animation: fadeIn 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 .message.user {
@@ -90,6 +102,38 @@
   color: #333;
   align-self: flex-start;
   border-bottom-left-radius: 5px;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.message.info {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.message::before {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.message.error::before {
+  content: '⚠️';
+}
+
+.message.info::before {
+  content: 'ℹ️';
+}
+
+.message.success::before {
+  content: '✓';
 }
 
 .chatbot-input {
@@ -135,6 +179,33 @@
 
 .typing-indicator span:nth-of-type(3) {
   animation-delay: 0.4s;
+}
+
+.order-list {
+  margin-top: 10px;
+}
+
+.order-list p {
+  margin-bottom: 5px;
+}
+
+.order-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-list li {
+  margin-bottom: 5px;
+}
+
+.order-list button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 @keyframes bounce {

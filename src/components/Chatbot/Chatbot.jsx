@@ -1,58 +1,27 @@
 import React from 'react';
 import Chatbot from 'react-chatbot-kit';
 import config from './config.jsx';
-import MessageParser from './MessageParser';
-import ActionProvider from './ActionProvider';
-import { FaTimes } from 'react-icons/fa';
+import MessageParser from './MessageParser.js';
 import 'react-chatbot-kit/build/main.css';
 import './Chatbot.css';
 
-const SimpleChatbot = ({ toggleChatbot }) => {
-  const chatbotConfig = {
-    ...config,
-    customComponents: {
-      ...config.customComponents,
-      header: () => (
-        <div
-          style={{
-            backgroundColor: '#007bff',
-            color: 'white',
-            padding: '10px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderTopLeftRadius: '5px',
-            borderTopRightRadius: '5px',
-          }}
-        >
-          <span>Chatbot</span>
-          <button
-            onClick={toggleChatbot}
-            style={{
-              backgroundColor: 'transparent',
-              border: 'none',
-              color: 'white',
-              fontSize: '20px',
-              cursor: 'pointer',
-            }}
-          >
-            <FaTimes />
-          </button>
-        </div>
-      ),
-    },
-  };
+const SimpleChatbot = ({ toggleChatbot, user }) => {
+  const chatbotConfig = config(user);
 
   return (
     <div className="chatbot-container">
+      <div className="chatbot-header">
+        <span>Chatbot</span>
+        <button onClick={toggleChatbot} className="close-button">
+          &times;
+        </button>
+      </div>
       <Chatbot
-        config={chatbotConfig}
+        {...chatbotConfig}
         messageParser={MessageParser}
-        actionProvider={ActionProvider}
       />
     </div>
   );
 };
 
 export default SimpleChatbot;
-

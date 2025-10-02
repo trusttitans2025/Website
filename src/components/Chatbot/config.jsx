@@ -1,7 +1,8 @@
+import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
-import { FaTimes } from 'react-icons/fa';
+import ActionProvider from './ActionProvider.js';
 
-const config = {
+const config = (user) => ({
   initialMessages: [createChatBotMessage(`Hello! How can I help you today?`)],
   customComponents: {
     header: (props) => (
@@ -13,6 +14,8 @@ const config = {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          borderTopLeftRadius: '5px',
+          borderTopRightRadius: '5px',
         }}
       >
         <span>Chatbot</span>
@@ -26,11 +29,15 @@ const config = {
             cursor: 'pointer',
           }}
         >
-          <FaTimes />
+          &times;
         </button>
       </div>
     ),
   },
-};
+  actionProvider: ActionProvider,
+  state: {
+    user: user,
+  },
+});
 
 export default config;

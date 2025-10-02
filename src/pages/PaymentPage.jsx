@@ -19,11 +19,10 @@ const PaymentPage = () => {
     setPaying(true);
 
     const orderPayload = {
-      userId: user.email,
-      products: cart.map(item => ({ productId: item.id, quantity: item.quantity, price: item.price })),
-      totalAmount: cart.reduce((total, item) => total + item.price * item.quantity, 0) + 5, // +5 for shipping
-      paymentMethod: paymentMethod,
-      shippingAddress: '123 Main St, Anytown, USA', // Dummy address
+      customer_id: user.email,
+      items: cart.map(item => ({ product_id: item.id, quantity: parseInt(item.quantity), price: parseFloat(item.price) })),
+      total_amount: parseFloat(cart.reduce((total, item) => total + item.price * item.quantity, 0) + 5), // +5 for shipping
+      status: 'pending',
     };
 
     try {

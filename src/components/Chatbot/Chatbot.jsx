@@ -87,7 +87,7 @@ const Chatbot = ({ user }) => {
         if (!response.ok) {
           const errorData = await response.json();
           const errorMessage = parseErrorMessage(errorData);
-          addMessage(errorMessage, 'bot', 'error');
+          addMessage(errorMessage.message, 'bot', errorMessage.type);
           return;
         }
 
@@ -141,19 +141,20 @@ const Chatbot = ({ user }) => {
         body: JSON.stringify(conversation),
       });
 
-      if (response.status === 409) {
-        // Conversation already exists, fetch it
-        const existingConversationResponse = await fetch(`https://web-chat-service-631872245250.us-central1.run.app/conversations/${order.orderId}`);
-        if (!existingConversationResponse.ok) {
-          throw new Error('Failed to fetch existing conversation');
-        }
-        const existingConversation = await existingConversationResponse.json();
-        setMessages(existingConversation.messages);
-        addMessage('Order already in process', 'bot', 'info');
-      } else if (!response.ok) {
+      if (!response.ok) {
         const errorData = await response.json();
-        const errorMessage = parseErrorMessage(errorData);
-        addMessage(errorMessage, 'bot', 'error');
+        const { type, message } = parseErrorMessage(errorData);
+        addMessage(message, 'bot', type);
+
+        if (type === 'info') {
+          const existingConversationResponse = await fetch(`https://web-chat-service-631872245250.us-central1.run.app/conversations/${order.orderId}`);
+          if (!existingConversationResponse.ok) {
+            throw new Error('Failed to fetch existing conversation');
+          }
+          const existingConversation = await existingConversationResponse.json();
+          setMessages(prev => [...prev, ...existingConversation.messages.map(msg => ({ text: msg.text, sender: msg.sender }))]);
+        }
+        return;
       }
 
       addMessage(`You have selected order ${order.orderId}. How can I help you with this order?`, 'bot', 'info');

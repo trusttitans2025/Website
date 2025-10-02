@@ -104,6 +104,13 @@
   border-bottom-left-radius: 5px;
 }
 
+.message.admin {
+  background-color: #f1f0f0;
+  color: #333;
+  align-self: flex-start;
+  border-bottom-left-radius: 5px;
+}
+
 .message.error {
   background-color: #ffebee;
   color: #c62828;

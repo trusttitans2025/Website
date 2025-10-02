@@ -8,8 +8,11 @@ const errorMap = {
 export const parseErrorMessage = (error) => {
   for (const key in errorMap) {
     if (error.detail.includes(key)) {
-      return errorMap[key];
+      if (key === "already exists" || key === "Conversation with orderId") {
+        return { type: 'info', message: errorMap[key] };
+      }
+      return { type: 'error', message: errorMap[key] };
     }
   }
-  return "Something went wrong. Please try again";
+  return { type: 'error', message: "Something went wrong. Please try again" };
 };

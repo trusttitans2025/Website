@@ -21,7 +21,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Dummy user credentials
-    if (email === 'user@example.com' && password === 'password') {
+    if (email === 'kajal@example.com' && password === '1234') {
       login({ email });
       navigate('/');
     }
